@@ -50,6 +50,10 @@ async def root():
 async def handle_telegram_webhook(request: Request):
     """Handles telegram webhook updates by passing them to the bot app."""
     data = await request.json()
+
+    print("--- ✅ پیام جدید از تلگرام دریافت شد! ---")
+    print(data)
+
     update = Update.de_json(data, bot_app.bot)
     await bot_app.update_queue.put(update)
     return {"status": "ok"}
